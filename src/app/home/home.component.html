@@ -1,0 +1,39 @@
+
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">AlgoChords</a>
+
+</nav>
+
+<div class="container bg-light my-2">
+
+  <form>
+    <h1 class="mb-2">Generate Chords</h1>
+    <label label>Genre</label>
+    <select class="form-control mb-2">
+      <option>Pop</option>
+    </select>
+    <label>Initial Dur Chord</label>
+    <select class="form-control mb-2" [(ngModel)]="chordIndex" name="chordList"  (change)="setSelectedChordIndex($event.target.value); generateChords();" >
+      <option *ngFor="let chord of durChords; let i = index" [attr.data-index]="i"  [value]="i" selected="selectedChord">{{chord}}</option>
+    </select>
+    <label>Number of Chords</label>
+    <select class="form-control mb-2" [(ngModel)]="chordAmount" name="amountOfChords" (change)="generateChords()">
+      <option selected>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+    </select>
+    <button class="btn btn-dark my-2" style="width: 100%;"  (click)="generateChordsWithRandomTone()">Random</button>
+  </form>
+
+  <div class="container my-2 bg-white">
+    <h2 class="my-2">Possible Chord Progression:</h2>
+    <div class="container text-center row mt-2 border">
+      <h3 class="col-lg-1 col-xs-3" *ngFor="let c of resultChords">
+       {{c}}
+      </h3> 
+    </div>
+  </div>
+</div>
